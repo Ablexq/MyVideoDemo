@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="10dp"
-    android:orientation="vertical"
-    tools:context="com.example.video.MainActivity">
+    android:orientation="vertical">
 
     <EditText
         android:id="@+id/et"
@@ -20,11 +19,25 @@
         android:layout_height="200dp"
         android:layout_marginTop="10dp" />
 
-    <SeekBar
-        android:id="@+id/sb"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <SeekBar
+            android:id="@+id/sb"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="00:00" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

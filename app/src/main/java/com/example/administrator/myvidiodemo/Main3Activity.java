@@ -2,6 +2,7 @@ package com.example.administrator.myvidiodemo;
 
 
 import android.app.Activity;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -21,7 +22,7 @@ import io.vov.vitamio.widget.VideoView;
 
 public class Main3Activity extends Activity implements MediaPlayer.OnPreparedListener, MediaPlayer.OnErrorListener, MediaPlayer.OnCompletionListener {
 
-    private VideoView video;
+    private VideoView videoView;
     private Button btn;
     private EditText et;
 
@@ -37,7 +38,7 @@ public class Main3Activity extends Activity implements MediaPlayer.OnPreparedLis
     }
 
     private void initView() {
-        video = (VideoView) findViewById(R.id.video1);
+        videoView = (VideoView) findViewById(R.id.video1);
         btn = (Button) findViewById(R.id.btn1);
         et = (EditText) findViewById(R.id.et2);
 
@@ -48,20 +49,23 @@ public class Main3Activity extends Activity implements MediaPlayer.OnPreparedLis
                         et.getText().toString();
                 Log.e("Main3Activity", "path====" + path);
                 Uri uri = Uri.parse(path);
-                video.setVideoURI(uri);
-                video.setMediaController(new MediaController(Main3Activity.this));
+                videoView.setVideoURI(uri);
+
+                MediaController mediaController = new MediaController(Main3Activity.this);
+                videoView.setMediaController(mediaController);
+                mediaController.setMediaPlayer(videoView);
 
                 //设置监听
-                video.setOnPreparedListener(Main3Activity.this);
-                video.setOnErrorListener(Main3Activity.this);
-                video.setOnCompletionListener(Main3Activity.this);
+                videoView.setOnPreparedListener(Main3Activity.this);
+                videoView.setOnErrorListener(Main3Activity.this);
+                videoView.setOnCompletionListener(Main3Activity.this);
             }
         });
     }
 
     @Override
     public void onPrepared(MediaPlayer mp) {
-        video.start();
+        videoView.start();
         Log.e("Main3Activity", "====onPrepared====");
     }
 
@@ -75,4 +79,14 @@ public class Main3Activity extends Activity implements MediaPlayer.OnPreparedLis
         Log.e("Main3Activity", "====onError====");
         return false;
     }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        //屏幕切换时，设置全屏
+        if (videoView != null) {
+            videoView.setVideoLayout(VideoView.VIDEO_LAYOUT_SCALE, 0);
+        }
+        super.onConfigurationChanged(newConfig);
+    }
+
 }

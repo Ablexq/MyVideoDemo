@@ -26,10 +26,40 @@
             android:text="确定" />
     </LinearLayout>
 
-    <io.vov.vitamio.widget.VideoView
-        android:id="@+id/video1"
+    <TextView
+        android:id="@+id/vtime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/vspeed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="" />
+
+    <io.vov.vitamio.widget.CenterLayout
+        android:id="@+id/dd"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+
+        <io.vov.vitamio.widget.VideoView
+            android:id="@+id/video1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true" />
+    </io.vov.vitamio.widget.CenterLayout>
+
 
 </LinearLayout>
